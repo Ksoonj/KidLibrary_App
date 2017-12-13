@@ -127,8 +127,6 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this,library_location_google.class);
             startActivity(intent);
 
-
-
         }
 
 

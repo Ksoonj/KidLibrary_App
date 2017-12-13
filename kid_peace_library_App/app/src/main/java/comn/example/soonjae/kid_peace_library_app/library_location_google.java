@@ -1,7 +1,6 @@
 package comn.example.soonjae.kid_peace_library_app;
 
 
-
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 
@@ -25,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -41,10 +41,10 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 
-public class library_location_google extends AppCompatActivity {
+public class library_location_google extends AppCompatActivity implements OnMapReadyCallback {
 
     //체크할 권한 배열
-    String[] permission_list={
+    String[] permission_list = {
             android.Manifest.permission.ACCESS_COARSE_LOCATION,
             android.Manifest.permission.ACCESS_FINE_LOCATION
     };
@@ -70,7 +70,7 @@ public class library_location_google extends AppCompatActivity {
     };
     //types 값 배열
     String[] category_value_array = {
-            "all", "atm","bank","beauty_salon","cafe","church","gas_station","restaurant",
+            "all", "atm", "bank", "beauty_salon", "cafe", "church", "gas_station", "restaurant",
     };
 
 
@@ -81,8 +81,8 @@ public class library_location_google extends AppCompatActivity {
 
         //구글 맵 객체를 추출
         FragmentManager fm = getSupportFragmentManager();
-        SupportMapFragment map_frag = (SupportMapFragment)fm.findFragmentById(R.id.fragment);
-        map = map_frag.getMap();
+        SupportMapFragment map_frag = (SupportMapFragment) fm.findFragmentById(R.id.fragment);
+        map_frag.getMapAsync(this);
 
         lat_list = new ArrayList<>();
         lng_list = new ArrayList<>();
@@ -94,55 +94,58 @@ public class library_location_google extends AppCompatActivity {
         checkPermission();
 
     }
-    public void checkPermission(){
-        boolean isGrant=false;
-        for(String str : permission_list){
-            if(ContextCompat.checkSelfPermission(this,str)== PackageManager.PERMISSION_GRANTED){          }
-            else{
-                isGrant=false;
+
+    public void checkPermission() {
+        boolean isGrant = false;
+        for (String str : permission_list) {
+            if (ContextCompat.checkSelfPermission(this, str) == PackageManager.PERMISSION_GRANTED) {
+            } else {
+                isGrant = false;
                 break;
             }
         }
-        if(isGrant==false){
-            ActivityCompat.requestPermissions(this,permission_list,0);
+        if (isGrant == false) {
+            ActivityCompat.requestPermissions(this, permission_list, 0);
         }
     }
+
     // 사용자가 권한 허용/거부 버튼을 눌렀을 때 호출되는 메서드
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         boolean isGrant = true;
-        for(int result : grantResults){
-            if(result == PackageManager.PERMISSION_DENIED){
+        for (int result : grantResults) {
+            if (result == PackageManager.PERMISSION_DENIED) {
                 isGrant = false;
                 break;
             }
         }
         // 모든 권한을 허용했다면 사용자 위치를 측정한다.
-        if(isGrant == true){
+        if (isGrant == true) {
             getMyLocation();
         }
     }
 
     // 현재 위치를 가져온다.
-    public void getMyLocation(){
-        manager = (LocationManager)getSystemService(LOCATION_SERVICE);
+    public void getMyLocation() {
+        manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         // 권한이 모두 허용되어 있을 때만 동작하도록 한다.
         int chk1 = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION);
         int chk2 = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION);
-        if(chk1 == PackageManager.PERMISSION_GRANTED && chk2 == PackageManager.PERMISSION_GRANTED){
+        if (chk1 == PackageManager.PERMISSION_GRANTED && chk2 == PackageManager.PERMISSION_GRANTED) {
             myLocation = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             showMyLocation();
         }
         // 새롭게 위치를 측정한다.
         GpsListener listener = new GpsListener();
-        if(manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+        if (manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 10, listener);
         }
-        if(manager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+        if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, listener);
         }
     }
+
     // GPS Listener
     class GpsListener implements LocationListener {
         @Override
@@ -154,24 +157,28 @@ public class library_location_google extends AppCompatActivity {
             // 지도를 현재 위치로 이동시킨다.
             showMyLocation();
         }
+
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
         }
+
         @Override
         public void onProviderDisabled(String provider) {
         }
+
         @Override
         public void onProviderEnabled(String provider) {
         }
     }
-    public void showMyLocation(){
+
+    public void showMyLocation() {
         // LocationManager.GPS_PROVIDER 부분에서 null 값을 가져올 경우를 대비하여 장치
-        if(myLocation == null){
+        if (myLocation == null) {
             return;
         }
         // 현재 위치값을 추출한다.
-        double lat=myLocation.getLatitude();
-        double lng=myLocation.getLongitude();
+        double lat = myLocation.getLatitude();
+        double lng = myLocation.getLongitude();
 
         //위도 경도를 관리하는 객체를 생성
         LatLng position = new LatLng(lat, lng);
@@ -185,6 +192,16 @@ public class library_location_google extends AppCompatActivity {
         map.animateCamera(update2);
 
         //현재 위치 표시
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         map.setMyLocationEnabled(true);
 
         //지도모드 변경
@@ -365,4 +382,8 @@ public class library_location_google extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        this.map = googleMap;
+    }
 }
