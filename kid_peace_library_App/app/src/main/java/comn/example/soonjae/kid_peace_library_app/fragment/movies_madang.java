@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,13 +26,16 @@ public class movies_madang extends Fragment {
         View view;
         view = inflater.inflate(R.layout.activity_movies_madang,container,false);
 
-        RecyclerView rv = (RecyclerView) view.findViewById(R.id.movies_recyclerview);
-        rv.setHasFixedSize(true);
-        CardContentAdapter adapter = new CardContentAdapter();
-        rv.setAdapter(adapter);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(llm);
+        RecyclerView mRecylerView = (RecyclerView) view.findViewById(R.id.movies_recyclerview);
+        StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        mRecylerView.setHasFixedSize(true);
+        mRecylerView.setLayoutManager(mLayoutManager);
+
+        CardContentAdapter adapter = new CardContentAdapter();
+
+        mRecylerView.setAdapter(adapter);
 
         return view;
 

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-    
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-     //헤더 접근
+        //헤더 접근
         View HeaderView = navigationView.getHeaderView(0);
 
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity
 
 
         // 초기화하
-       tabfragment = new TabFragment();
+        tabfragment = new TabFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container,tabfragment).commit();
