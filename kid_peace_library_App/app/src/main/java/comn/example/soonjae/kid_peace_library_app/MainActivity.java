@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
         // 초기화하
        tabfragment = new TabFragment();
 

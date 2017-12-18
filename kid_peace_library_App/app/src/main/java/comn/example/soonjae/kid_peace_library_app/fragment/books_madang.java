@@ -20,8 +20,6 @@ import comn.example.soonjae.kid_peace_library_app.adapter.CardContentAdapter;
 public class books_madang extends Fragment {
 
 
-
-
     @Nullable
     @Override
 
@@ -33,7 +31,6 @@ public class books_madang extends Fragment {
         rv.setHasFixedSize(true);
         CardContentAdapter adapter = new CardContentAdapter();
         rv.setAdapter(adapter);
-
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(llm);
 

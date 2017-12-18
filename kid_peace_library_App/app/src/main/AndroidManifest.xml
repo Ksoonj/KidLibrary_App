@@ -54,7 +54,7 @@
             android:value="AIzaSyBl1d6sC76TAOv5gKMzgLby7Z-Gu-z3FNc" />
 
         <activity
-            android:name=".BoardActivity"
+            android:name=".fragment.BoardActivity"
             android:label="@string/title_activity_board"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
