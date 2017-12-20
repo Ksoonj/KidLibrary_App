@@ -10,17 +10,19 @@ import comn.example.soonjae.kid_peace_library_app.R;
  * Created by qtae on 17. 12. 13.
  */
 
-public class CommentlistAdapter extends RecyclerView.Adapter<ListContentAdapter.ViewHolder>{
+public class CommentlistAdapter extends RecyclerView.Adapter<CommentlistAdapter.ViewHolder>{
 
     private static final int LENGTH = 10;
 
+
+
     @Override
-    public ListContentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ListContentAdapter.ViewHolder(LayoutInflater.from(parent.getContext()), parent);
+    public CommentlistAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new CommentlistAdapter.ViewHolder(LayoutInflater.from(parent.getContext()), parent);
     }
 
     @Override
-    public void onBindViewHolder(ListContentAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CommentlistAdapter.ViewHolder holder, int position) {
 
     }
 
