@@ -56,7 +56,8 @@
         <activity
             android:name=".fragment.BoardActivity"
             android:label="@string/title_activity_board"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SettingActivity"></activity>
     </application>
 
 </manifest>
