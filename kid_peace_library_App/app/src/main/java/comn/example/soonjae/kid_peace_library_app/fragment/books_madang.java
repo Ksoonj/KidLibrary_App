@@ -21,6 +21,11 @@ import comn.example.soonjae.kid_peace_library_app.adapter.CardContentAdapter;
 
 public class books_madang extends Fragment {
 
+<<<<<<< HEAD
+=======
+
+    @Nullable
+>>>>>>> b2ac5a375521cc7071ef8d99f364f0b95125ad80
     @Override
 
 
@@ -38,8 +43,14 @@ public class books_madang extends Fragment {
         mRecylerView.setLayoutManager(mLayoutManager);
 
         CardContentAdapter adapter = new CardContentAdapter();
+<<<<<<< HEAD
 
         mRecylerView.setAdapter(adapter);
+=======
+        rv.setAdapter(adapter);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(llm);
+>>>>>>> b2ac5a375521cc7071ef8d99f364f0b95125ad80
 
         return view;
     }

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+    
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -45,8 +45,13 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+<<<<<<< HEAD:kid_peace_library_App/app/src/main/java/comn/example/soonjae/kid_peace_library_app/Activity/MainActivity.java
         //헤더 접근
         View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
+=======
+     //헤더 접근
+        View HeaderView = navigationView.getHeaderView(0);
+>>>>>>> b2ac5a375521cc7071ef8d99f364f0b95125ad80:kid_peace_library_App/app/src/main/java/comn/example/soonjae/kid_peace_library_app/MainActivity.java
 
 
         //헤더->로그인액티비티 인텐
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+<<<<<<< HEAD:kid_peace_library_App/app/src/main/java/comn/example/soonjae/kid_peace_library_app/Activity/MainActivity.java
 
         //
 
@@ -83,6 +89,10 @@ public class MainActivity extends AppCompatActivity
 
         // 초기화하기
         tabfragment = new TabFragment();
+=======
+        // 초기화하
+       tabfragment = new TabFragment();
+>>>>>>> b2ac5a375521cc7071ef8d99f364f0b95125ad80:kid_peace_library_App/app/src/main/java/comn/example/soonjae/kid_peace_library_app/MainActivity.java
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container,tabfragment).commit();

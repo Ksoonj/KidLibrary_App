@@ -40,8 +40,8 @@ public class TabFragment extends Fragment {
 
         Log.v("Layout","Tabs");
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-//        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));
-//        tabLayout.setTabTextColors(Color.parseColor("#707070"), Color.parseColor("#FFFFFF"));
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));
+        tabLayout.setTabTextColors(Color.parseColor("#707070"), Color.parseColor("#FFFFFF"));
         assert viewPager != null;
         tabLayout.setupWithViewPager(viewPager);
 

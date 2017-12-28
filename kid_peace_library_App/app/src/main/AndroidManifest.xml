@@ -64,12 +64,19 @@
             android:value="AIzaSyBl1d6sC76TAOv5gKMzgLby7Z-Gu-z3FNc" />
 
         <activity
+<<<<<<< HEAD
             android:name=".Activity.BoardActivity"
             android:label="@string/title_activity_board"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
 
+=======
+            android:name=".fragment.BoardActivity"
+            android:label="@string/title_activity_board"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SettingActivity"></activity>
+>>>>>>> b2ac5a375521cc7071ef8d99f364f0b95125ad80
     </application>
 
 

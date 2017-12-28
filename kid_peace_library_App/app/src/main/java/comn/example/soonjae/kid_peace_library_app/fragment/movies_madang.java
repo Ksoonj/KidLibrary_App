@@ -5,7 +5,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+>>>>>>> b2ac5a375521cc7071ef8d99f364f0b95125ad80
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +48,7 @@ public class movies_madang extends Fragment {
             @Override
             public void onPostClick(long id) {
 
+<<<<<<< HEAD
             }
         });
 
@@ -56,6 +60,15 @@ public class movies_madang extends Fragment {
 
         loadAnswers();
 
+=======
+        RecyclerView rv = (RecyclerView) view.findViewById(R.id.movies_recyclerview);
+        rv.setHasFixedSize(true);
+        CardContentAdapter adapter = new CardContentAdapter();
+        rv.setAdapter(adapter);
+
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(llm);
+>>>>>>> b2ac5a375521cc7071ef8d99f364f0b95125ad80
 
         return view;
 

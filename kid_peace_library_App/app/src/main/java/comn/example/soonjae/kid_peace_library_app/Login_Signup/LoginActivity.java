@@ -9,8 +9,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import comn.example.soonjae.kid_peace_library_app.Activity.MainActivity;
 import comn.example.soonjae.kid_peace_library_app.ApiUtils;
+=======
+import java.util.ArrayList;
+
+import comn.example.soonjae.kid_peace_library_app.DBHelper;
+>>>>>>> b2ac5a375521cc7071ef8d99f364f0b95125ad80
 import comn.example.soonjae.kid_peace_library_app.R;
 import comn.example.soonjae.kid_peace_library_app.ResObj;
 import comn.example.soonjae.kid_peace_library_app.service.UserService;
@@ -34,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+<<<<<<< HEAD
         user_id = (EditText)findViewById(R.id.input_id);
         user_pwd = (EditText)findViewById(R.id.input_password);
         btn_login =(Button)findViewById(R.id.btn_login);
@@ -66,7 +73,32 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+=======
+        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "login.db", null, 1);
+        final EditText idtxt = (EditText)findViewById(R.id.input_id);
+        final EditText pwtxt = (EditText)findViewById(R.id.input_password);
+        ArrayList<String> IDList = new ArrayList<String>();
+
+        Button loginbtn = (Button)findViewById(R.id.btn_login);
+
+        loginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String id = idtxt.getText().toString();
+                String pw = pwtxt.getText().toString();
+
+                if (id.length()==0||pw.length() == 0){
+                    Toast toast = Toast.makeText(LoginActivity.this, "아이디와 비밀번호는 필수입력사항입니다.");
+                    toast.show();
+                    return;
+                }
+                String sql = "SELECT id FROM "+ dbHelper.tableName
+            }
+        });
+
+>>>>>>> b2ac5a375521cc7071ef8d99f364f0b95125ad80
         move_signup = (TextView)findViewById(R.id.link_signup);
+
 
         move_signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,4 +163,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+
 }
