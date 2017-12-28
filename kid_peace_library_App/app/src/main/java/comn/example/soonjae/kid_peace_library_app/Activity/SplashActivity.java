@@ -1,9 +1,11 @@
-package comn.example.soonjae.kid_peace_library_app;
+package comn.example.soonjae.kid_peace_library_app.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import comn.example.soonjae.kid_peace_library_app.R;
 
 
 public class SplashActivity extends Activity{

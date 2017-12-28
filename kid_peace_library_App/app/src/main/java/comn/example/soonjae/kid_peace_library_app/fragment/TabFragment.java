@@ -53,6 +53,8 @@ public class TabFragment extends Fragment {
         adapter.addFragment(new peace_news_madang(), "소식마당");
         adapter.addFragment(new movies_madang(), "영화마당");
         adapter.addFragment(new books_madang(),"책마당");
+        adapter.addFragment(new sample_madang(),"sample");
+
         viewPager.setAdapter(adapter);
     }
 

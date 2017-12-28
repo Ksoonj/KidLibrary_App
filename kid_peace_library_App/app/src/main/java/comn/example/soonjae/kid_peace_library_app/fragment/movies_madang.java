@@ -5,14 +5,22 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import comn.example.soonjae.kid_peace_library_app.Activity.ApiUtlis;
 import comn.example.soonjae.kid_peace_library_app.R;
-import comn.example.soonjae.kid_peace_library_app.adapter.CardContentAdapter;
-import comn.example.soonjae.kid_peace_library_app.adapter.ListContentAdapter;
+import comn.example.soonjae.kid_peace_library_app.adapter.BoardAdapter;
+import comn.example.soonjae.kid_peace_library_app.data.model.Item;
+import comn.example.soonjae.kid_peace_library_app.data.model.SOAnswersResponse;
+import comn.example.soonjae.kid_peace_library_app.data.model.remote.SOServiced;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by soonjae on 17. 12. 5.
@@ -20,24 +28,64 @@ import comn.example.soonjae.kid_peace_library_app.adapter.ListContentAdapter;
 
 public class movies_madang extends Fragment {
 
+    private SOServiced service;
+    private RecyclerView recyclerView;
+    private BoardAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view;
-        view = inflater.inflate(R.layout.activity_movies_madang,container,false);
+        view = inflater.inflate(R.layout.activity_movies_madang, container, false);
 
 
-        RecyclerView mRecylerView = (RecyclerView) view.findViewById(R.id.movies_recyclerview);
-        StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        mLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-        mRecylerView.setHasFixedSize(true);
-        mRecylerView.setLayoutManager(mLayoutManager);
+        service = ApiUtlis.getSOService();
+        recyclerView = (RecyclerView) view.findViewById(R.id.movies_recyclerview);
+        adapter = new BoardAdapter(this, new ArrayList<Item>(0), new BoardAdapter.PostItemListener() {
+            @Override
+            public void onPostClick(long id) {
 
-        CardContentAdapter adapter = new CardContentAdapter();
+            }
+        });
 
-        mRecylerView.setAdapter(adapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+
+
+        loadAnswers();
+
 
         return view;
 
+
+    }
+
+
+
+
+
+    private void loadAnswers() {
+
+        service.getAnswers().enqueue(new Callback<SOAnswersResponse>() {
+            @Override
+            public void onResponse(Call<SOAnswersResponse> call, Response<SOAnswersResponse> response) {
+                if(response.isSuccessful()) {
+                    adapter.updateAnswers(response.body().getItems());
+                    Log.d("movies_madang", "posts loaded from API");
+                }else {
+                    int statusCode  = response.code();
+                    // handle request errors depending on status code
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SOAnswersResponse> call, Throwable t) {
+
+                Log.d("MainActivity", "error loading from API");
+
+            }
+        });
     }
 }

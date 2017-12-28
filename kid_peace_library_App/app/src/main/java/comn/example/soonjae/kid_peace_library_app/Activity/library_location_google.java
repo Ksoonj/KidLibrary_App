@@ -1,4 +1,4 @@
-package comn.example.soonjae.kid_peace_library_app;
+package comn.example.soonjae.kid_peace_library_app.Activity;
 
 
 import android.content.DialogInterface;
@@ -39,6 +39,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+
+import comn.example.soonjae.kid_peace_library_app.R;
 
 
 public class library_location_google extends AppCompatActivity implements OnMapReadyCallback {

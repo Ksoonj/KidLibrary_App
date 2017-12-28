@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="comn.example.soonjae.kid_peace_library_app.BoardActivity"
+    tools:context="comn.example.soonjae.kid_peace_library_app.Activity.BoardActivity"
     tools:showIn="@layout/activity_board">
 
     <TextView
@@ -48,16 +48,17 @@
             />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/contentstext"
-        android:text="contents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="25dp"
-        />
+
+        <TextView
+            android:id="@+id/contentstext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="25dp"
+            android:text="contents" />
     </LinearLayout>
 
 </LinearLayout>

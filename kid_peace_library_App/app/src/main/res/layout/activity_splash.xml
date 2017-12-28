@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context="comn.example.soonjae.kid_peace_library_app.SplashActivity">
+    tools:context="comn.example.soonjae.kid_peace_library_app.Activity.SplashActivity">
 
 
     <ImageView

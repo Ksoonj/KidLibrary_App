@@ -1,4 +1,4 @@
-package comn.example.soonjae.kid_peace_library_app;
+package comn.example.soonjae.kid_peace_library_app.Activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -14,9 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 import comn.example.soonjae.kid_peace_library_app.Login_Signup.LoginActivity;
 import comn.example.soonjae.kid_peace_library_app.Login_Signup.SignupActivity;
+import comn.example.soonjae.kid_peace_library_app.R;
 import comn.example.soonjae.kid_peace_library_app.fragment.TabFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -39,15 +41,16 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //헤더 접근
-        View HeaderView = navigationView.getHeaderView(0);
+        View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
 
 
         //헤더->로그인액티비티 인텐
-        Button btn_login = (Button)HeaderView.findViewById(R.id.btn_login);
+        Button btn_login = (Button)nav_header_view.findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         //헤더->회원가입액티비티 인텐트
-        Button btn_signup = (Button)HeaderView.findViewById(R.id.btn_signup);
+        Button btn_signup = (Button)nav_header_view.findViewById(R.id.btn_signup);
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +71,17 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        // 초기화하
+        //
+
+
+        View login_header = navigationView.inflateHeaderView(R.layout.nav_login_header);
+
+        TextView textView = (TextView)login_header.findViewById(R.id.login_header);
+        textView.setText("Soonjae");
+
+
+
+        // 초기화하기
         tabfragment = new TabFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 
 import comn.example.soonjae.kid_peace_library_app.R;
 
+/**
+ * Created by soonjae on 19/12/17.
+ */
 public class CardContentAdapter extends RecyclerView.Adapter<CardContentAdapter.ViewHolder> {
 
     // Set numbers of List in RecyclerView.
